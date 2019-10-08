@@ -61,6 +61,8 @@ body {
 
   /* Moves point of origin to center of element */
   transform: translate(-50%, -50%);
+
+  text-align: center;
 }
 
 .heading-primary {
@@ -69,6 +71,7 @@ body {
 
   /* Helps animation not shake across browsers */
   backface-visibility: hidden;
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -91,6 +94,7 @@ body {
   animation: moveInRight 1s ease-out;
 }
 
+/* Animations */
 @keyframes moveInLeft {
   /* Starts invisible from the left */
   0% {
@@ -109,7 +113,6 @@ body {
 }
 
 @keyframes moveInRight {
-  /* Starts invisible from the left */
   0% {
     opacity: 0;
     transform: translateX(100px);
@@ -123,4 +126,75 @@ body {
     opacity: 1;
     transform: translate(0);
   }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  position: relative;
+
+  /* Treated as text */
+  display: inline-block;
+  border-radius: 100px;
+  transition: all 0.2s;
+  backface-visibility: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* When button is clicked */
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+
+  /* Applys styles of start animation */
+  animation-fill-mode: backwards;
 }
